@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+struct str
+{
+    char string;
+    char string *a;
+    int n;
+
+};
+
+struct str input()
+{
+    struct str f;
+    int i;
+    printf("Enter The Number Of Words\n");
+    scanf("%d",&f.n);
+    f.a=malloc(f.n*sizeof(string));
+    for(i=0;i<f.n;i++)
+       {
+           printf("Enter Word %d\n",i+1);
+           gets(f.a[i]);
+        }
+    return f;
+
+
+}
+
+static cmpfunc(const void *p1, const void *p2)
+{
+    return strcmp(* (char * const *) p1, * (char * const *) p2);
+}
+
+struct str compute(struct str f)
+{
+    qsort(f.a, f.n, sizeof(char), cmpfunc);
+    return f;
+}
+
+void output(struct str f)
+{
+    int i;
+    printf("The Sorted Sequence Is :\n");
+    for(i=0;i<f.n;i++)
+       {
+          gets(f.a[i].string);
+          printf("\n");
+       }
+}
+int main()
+{
+
+
+    struct str f;
+    f=input();
+    f=compute(f);
+    output (f);
+    return 0;
+}
