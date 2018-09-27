@@ -1,0 +1,44 @@
+//after sorting of the array,and returning back to the main function,the last element of the array doesnt get recorded,hence while printing the last string is ommitted  
+#include<stdio.h>
+#include<stdlib.h>
+input(int *n)
+{
+    int num;
+    printf("Enter The Number Of Strings\n");
+    scanf("%d",&num);
+    *n=num;
+    char **a;
+    a=(char **)malloc(num*sizeof(char *));
+    char s[1000];
+    for(int i=0;i<num;i++)
+       {
+           printf("Enter String %d:\n",i+1);
+           scanf("%s",s);
+           a[i]=malloc(sizeof(s)+1);
+           strcpy(a[i],s);
+       }
+    return a;
+}
+int comparator(void *p,void *q)
+{
+    return strcmp((*(char **)p),(*(char **)q));
+}
+int compute(char **a,int n)
+{
+    qsort((void *)a,n,sizeof(a[0]),comparator);
+    return a;
+}
+void output(char **a,int n)
+{
+    printf("The Sorted Array Is:\n");
+    for(int i=0;i<n;i++)
+    printf("%s\n",a[i]);
+}
+int main()
+{
+    int n;
+    char **a=input(&n);
+    **a=compute(a,n);
+    output(a,n);
+    return 0;
+}
