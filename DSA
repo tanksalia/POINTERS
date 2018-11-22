@@ -11,21 +11,23 @@ struct patient
     double  phonenumber;
     char disease[40];
     int roomno;
-    ch dr[40];
+    char dr[40];
     int date;
     char month[50];
     int year;
     char allergies[50];
     struct patient *link;
 };
-typedef struct Customer *PATIENT;
+typedef struct patient *PATIENT;
 
 PATIENT insertpatient(PATIENT first)
 {
         PATIENT temp=NULL;
+        
         temp=(PATIENT*)malloc(sizeof(PATIENT));
-                 if(first->link==NULL)
+                 if(first==NULL)
                    {
+                       first=(PATIENT*)malloc(sizeof(PATIENT));
                       printf("1.Please Enter Your name\n");
                         scanf("%s",first->name);
                          printf("3.Please Enter Your Age\n");
@@ -53,7 +55,7 @@ PATIENT insertpatient(PATIENT first)
                         return first;
                        
                    }
-                elseif(temp!=NULL)
+                else if(temp!=NULL)
                 {
                         printf("1.Please Enter Your name\n");
                         scanf("%s",temp->name);
@@ -89,11 +91,11 @@ PATIENT insertpatient(PATIENT first)
               
 }
 
-void displaypatientdetails(PATIENT cd)
+void displaypatientdetails(PATIENT first)
 {    
     PATIENT current=first;
     int ID;
-    if(first->link==NULL)
+    if(first==NULL)
     {
         printf(" NO PATIENT we broke bro\n");
         return NULL;
@@ -102,7 +104,7 @@ void displaypatientdetails(PATIENT cd)
     {
         printf("Enter Patient ID\n");
         scanf("%d",&ID);
-        while(current->link!=NULL)
+        while(1)
              {
                  if(current->id==ID)
                     {
@@ -113,14 +115,14 @@ void displaypatientdetails(PATIENT cd)
                         printf("DISEASE:%s\n",current->disease);
                         printf("ID:%d\n",current->id);
                         printf("ROOM NO.:%d\n",current->roomno);
-                        printf("DOCTOR'S NAME:%s",current->dr);
-                        printf("ALLERGIES:%s",temp->allergies);
+                        printf("DOCTOR'S NAME:%s\n",current->dr);
+                        printf("ALLERGIES:%s\n",current->allergies);
                         printf("DATE/MONTH/YEAR:%d/%s/%d\n",current->date,current->month,current->year);
-                        scanf("EMERGENCY CONTACT:%d",current->phonenumber);
+                        printf("EMERGENCY CONTACT:%d\n",current->phonenumber);
                         break;
                       
                     }
-                else
+                else if(current->link!=NULL)
                 {
                     current=current->link;
                 }
@@ -134,7 +136,6 @@ int main()
 {
 
      PATIENT first=NULL;
-     first->name=NULL;
         int choice,element,id;
         while(1)
         {
