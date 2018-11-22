@@ -1,0 +1,163 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <malloc.h>
+struct patient
+{
+    char name[20];
+    int  id;
+    int  age;
+    char gender[20];
+    double  phonenumber;
+    char disease[40];
+    int roomno;
+    ch dr[40];
+    int date;
+    char month[50];
+    int year;
+    char allergies[50];
+    struct patient *link;
+};
+typedef struct Customer *PATIENT;
+
+PATIENT insertpatient(PATIENT first)
+{
+        PATIENT temp=NULL;
+        temp=(PATIENT*)malloc(sizeof(PATIENT));
+                 if(first->link==NULL)
+                   {
+                      printf("1.Please Enter Your name\n");
+                        scanf("%s",first->name);
+                         printf("3.Please Enter Your Age\n");
+                        scanf("%d",&first->age);
+                         printf("4.Please Enter Your Gender\n");
+                        scanf("%s",first->gender);
+                        printf("6.Please Enter Your Disease\n");
+                        scanf("%s",first->disease);
+                        printf("2.Please Enter Your Id\n");
+                        scanf("%d",&first->id);
+                       printf("6.Please Enter Your Room No.\n");
+                        scanf("%d",&first->roomno);
+                        printf("6.Please Enter Your Assigned Doctor Name\n");
+                        scanf("%s",first->dr);
+                        printf("5.Please Enter Your Allergies\n");
+                        scanf("%s",first->allergies);
+                        printf("6.Please Enter Admit Date\n");
+                        scanf("%d",&first->date);
+                        printf("6.Month\n");
+                        scanf("%s",first->month);
+                        printf("6.Year\n");
+                        scanf("%d",&first->year);
+                        printf("6.Please Enter Your Emergency Contact\n");
+                        scanf("%d",&first->phonenumber);
+                        return first;
+                       
+                   }
+                elseif(temp!=NULL)
+                {
+                        printf("1.Please Enter Your name\n");
+                        scanf("%s",temp->name);
+                         printf("3.Please Enter Your Age\n");
+                        scanf("%d",&temp->age);
+                         printf("4.Please Enter Your Gender\n");
+                        scanf("%s",temp->gender);
+                        printf("6.Please Enter Your Disease\n");
+                        scanf("%s",temp->disease);
+                        printf("2.Please Enter Your Id\n");
+                        scanf("%d",&temp->id);
+                       printf("6.Please Enter Your Room No.\n");
+                        scanf("%d",&temp->roomno);
+                        printf("6.Please Enter Your Assigned Doctor Name\n");
+                        scanf("%s",temp->dr);
+                        printf("5.Please Enter Your Allergies\n");
+                        scanf("%s",temp->allergies);
+                        printf("6.Please Enter Admit Date\n");
+                        scanf("%d",&temp->date);
+                        printf("6.Month\n");
+                        scanf("%s",temp->month);
+                        printf("6.Year\n");
+                        scanf("%d",&temp->year);
+                        printf("6.Please Enter Your Emergency Contact\n");
+                        scanf("%d",&temp->phonenumber);
+                        
+                        temp->link=first;
+                        return temp;
+                }        
+                        
+               
+               
+              
+}
+
+void displaypatientdetails(PATIENT cd)
+{    
+    PATIENT current=first;
+    int ID;
+    if(first->link==NULL)
+    {
+        printf(" NO PATIENT we broke bro\n");
+        return NULL;
+    }
+    else
+    {
+        printf("Enter Patient ID\n");
+        scanf("%d",&ID);
+        while(current->link!=NULL)
+             {
+                 if(current->id==ID)
+                    {
+                        printf("Patient Detail Are As Follows:\n");
+                        printf("NAME: %s\n",current->name);
+                        printf("AGE:%d\n",current->age);
+                        printf("GENDER:%s\n",current->gender);
+                        printf("DISEASE:%s\n",current->disease);
+                        printf("ID:%d\n",current->id);
+                        printf("ROOM NO.:%d\n",current->roomno);
+                        printf("DOCTOR'S NAME:%s",current->dr);
+                        printf("ALLERGIES:%s",temp->allergies);
+                        printf("DATE/MONTH/YEAR:%d/%s/%d\n",current->date,current->month,current->year);
+                        scanf("EMERGENCY CONTACT:%d",current->phonenumber);
+                        break;
+                      
+                    }
+                else
+                {
+                    current=current->link;
+                }
+             }
+      
+    }
+}
+
+
+int main()
+{
+
+     PATIENT first=NULL;
+     first->name=NULL;
+        int choice,element,id;
+        while(1)
+        {
+                printf("\t******************** HOSPITAL MANAGEMENT SYSTEM ********************\n");
+                printf("\n 1. NEW Patient \n 2. Display The Patient details \n 3.EXIT\n ");
+                printf("ENTER YOUR CHOICE\n");
+                scanf("%d",&choice);
+                switch(choice)
+                {
+                    case 1: 
+                        printf("Greetings!\n PLEASE ENTER YOUR DETAILS\n");
+                        first=insertpatient(first);
+                        break;
+                    case 2:
+                        displaypatientdetails(first);
+                        break;
+                    case 3:
+                        printf("Thanks for Choosing US!!!\n");
+                        exit(0);
+                        break;
+                    default:
+                        printf("Enter Right CHOICE for Functioning\n");
+                        break;
+                }
+        }
+}
